@@ -2866,6 +2866,8 @@ function parseExportDeclaration(
 
       if (isNamedDeclaration) {
         if (scope) declareUnboundVariable(parser, parser.tokenValue);
+        // TODO parseModuleExportName
+        // ModuleExportName could be identifier or string literal
         exported = parseIdentifier(parser, context, 0);
       }
 
@@ -2907,7 +2909,8 @@ function parseExportDeclaration(
         const local = parseIdentifier(parser, context, 0);
 
         let exported: ESTree.Identifier | null;
-
+        // TODO parseModuleExportName
+        // ModuleExportName could be identifier or string literal
         if (parser.token === Token.AsKeyword) {
           nextToken(parser, context);
           if ((parser.token & Token.IsStringOrNumber) === Token.IsStringOrNumber) {
